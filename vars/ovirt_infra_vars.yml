@@ -33,7 +33,7 @@ hosts:
  - name: host2
    address: 10.0.10.213
    cluster: Default
-   password: monica
+   public_key: true
 
  - name: host3
    address: 10.0.10.214
