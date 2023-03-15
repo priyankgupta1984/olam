@@ -1,0 +1,5 @@
+---
+collections:
+  - name: oracle.oci
+  - name: ovirt.ovirt
+  - name: community.general
