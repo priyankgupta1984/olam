@@ -1,3 +1,5 @@
+
+---
 - name: Add a host to oVirt Manager
   ovirt_host:
     auth:
