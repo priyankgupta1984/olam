@@ -1,0 +1,12 @@
+- name: Add a host to oVirt Manager
+  ovirt_host:
+    auth:
+      url: https://olvm4/ovirt-engine/api
+      username: admin
+      password: monica
+      ca_file: /etc/pki/ovirt-engine/ca.pem
+    name: host4
+    address: 10.0.10.215
+    cluster: Default
+    password: monica
+   
