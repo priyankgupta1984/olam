@@ -1,1 +1,14 @@
 
+---
+
+- hosts: all
+  tasks:
+   - name: check if ovirt-engine-backup files exist
+     stat:
+       path: /var/lib/ovirt-engine-backup/ovirt-engine-backup*
+     register: backup_files
+   - name: print last backup time
+     debug:
+       msg: "last backup captured at {{ backup_files.stat.mtime }}"
+   - name: create new backup file
+     command: "/usr/bin/engine-backup --scope=all --mode=backup"
