@@ -39,6 +39,14 @@
         tag:
           - pgsql
           - httpd
+          
+      - name: ol9_1
+        memory: 2GiB
+        cloud_init:
+          host_name: ol9
+          root_password: 'mypassword'
+        profile: "{{ db_vm }}"
+       
 
   roles:
     - vm_infra
