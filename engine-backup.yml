@@ -4,9 +4,10 @@
 - hosts: all
   tasks:
       - name: check if backup files are available
-        command: ls -l /var/lib/ovirt-engine-backup/ovirt-engine-backup*
+        command: ls -l /var/lib/ovirt-engine-backup/
         register: backup_files
       - name: print last backup time
         debug: msg="last backup captured at {{ backup_files.stderr }}"
+        when: backup_files.stdout_lines | length > 0
       - name: take a backup
         command: "/usr/bin/engine-backup --scope=all --mode=backup"
