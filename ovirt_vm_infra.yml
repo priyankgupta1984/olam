@@ -20,9 +20,6 @@
       memory: 1GiB
       memory_max: 2GiB
       cores: 1
-      tag:
-        - db
-        - dbvm
       disks:
         - size: 1GiB
           name: data
@@ -36,9 +33,7 @@
           host_name: ol9
           root_password: 'mypassword'
         profile: "{{ db_vm }}"
-        tag:
-          - pgsql
-          - httpd
+     
           
       - name: ol9_1
         memory: 2GiB
