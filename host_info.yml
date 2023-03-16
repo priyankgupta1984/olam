@@ -3,10 +3,11 @@
   hosts: all
   gather_facts: yes
   
-  vars_files:
-    - vars/ovirt_infra_vars.yml
-    # Contains encrypted `engine_password` varibale using ansible-vault
-    - vars/passwords.yml
+   vars:
+    ovirt_auth:
+      url: "https://olvm4/ovirt-engine/api"
+      username: "admin"
+      password: "monica"
     
   tasks:
     - name: List running hosts
