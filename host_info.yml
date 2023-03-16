@@ -9,15 +9,14 @@
       password: "monica"
 
   tasks:
-    - name: List running hosts
-      ovirt_host_info:
-        auth: "{{ ovirt_auth }}"
-        state: present
-        status: up
-        maintenance: False
-      register: host_info
+       - name: List running hosts
+         ovirt_host:
+           auth: "{{ ovirt_auth }}"
+           query: "status=up and maintenance=False"
+           state: present
+         register: host_info
 
-    - name: Display host information
-      debug:
-        msg: "{{ item.name }} - CPU: {{ item.cpu.total }} MHz, Memory: {{ item.memory.total|filesizeformat }}B"
-      loop: "{{ host_info.hosts }}"
+       - name: Display host information
+         debug:
+            msg: "{{ item.name }} - CPU: {{ item.cpu_total }} MHz, Memory: {{ item.memory_total|filesizeformat }}B"
+         loop: "{{ host_info.results }}"
