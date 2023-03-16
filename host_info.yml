@@ -2,7 +2,8 @@
 - name: Get host information
   hosts: all
   gather_facts: yes
- 
+  
+
   
   tasks:
     - name: List running hosts
