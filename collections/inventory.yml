@@ -1,4 +1,4 @@
 plugin: ovirt.ovirt.ovirt
-ovirt_url: "https://olvm4/ovirt-engine/api/"
+ovirt_url: "https://olvm.sub05091837550.olvvnc.oraclevcn.com/ovirt-engine/api/"
 ovirt_username: admin@internal
-ovirt_password: monica
+ovirt_password: Welcome1
