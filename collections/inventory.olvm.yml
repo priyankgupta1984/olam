@@ -1,0 +1,4 @@
+ plugin: ovirt.ovirt.ovirt
+ovirt_url: https://olvm4/ovirt-engine/api/
+ovirt_username: admin@internal
+ovirt_password: monica
