@@ -1,5 +1,6 @@
 ---
 - name: oVirt infra
+  hosts: all
   gather_facts: false
 
   vars_files:
