@@ -1,6 +1,6 @@
 ---
 - name: oVirt infra
-  hosts: all
+  hosts: 10.0.10.208
   gather_facts: false
 
   vars_files:
