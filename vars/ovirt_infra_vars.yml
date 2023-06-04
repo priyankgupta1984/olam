@@ -27,18 +27,10 @@ clusters:
 ###########################
 hosts:
  - name: host1
-   address: 10.0.10.212
+   address: 10.0.10.224
    cluster: Default
    password: monica
- - name: host2
-   address: 10.0.10.213
-   cluster: Default
-   public_key: true
 
- - name: host3
-   address: 10.0.10.214
-   cluster: Default
-   password: monica
 
 ###########################
 # Storage
