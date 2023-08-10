@@ -1,0 +1,22 @@
+---
+- name: Preparing the hosts for leapp Upgrade
+  hosts: all
+  become: yes  # Enable privilege escalation
+
+  tasks:
+    - name: Check Secure Boot status
+      command: mokutil --sb-state
+      register: secure_boot_output
+      changed_when: false
+      ignore_errors: true
+
+    - name: Disable Secure Boot if enabled
+      command: mokutil --disable-validation
+      when: "'enabled' in secure_boot_output.stdout"
+      changed_when: true
+
+    - name: Display status after attempting to disable Secure Boot
+      debug:
+        msg: "Secure Boot status: {{ 'disabled' if 'enabled' in secure_boot_output.stdout else 'already disabled' }}"
+
+     
