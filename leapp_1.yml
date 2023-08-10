@@ -62,6 +62,12 @@
     - name: Enable repository if not already enabled
       command: yum-config-manager --enablerepo=ol7_leapp,ol7_latest
 
+    - name: Install Leapp
+      become: yes
+      yum:
+       name: leapp-upgrade
+       state: present
+
     - name: Permit root login via ssh
       block:
         - name: Configure sshd
