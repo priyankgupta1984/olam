@@ -46,14 +46,13 @@
       reboot:
         reboot_timeout: 300
 
-    - name: Install leapp-upgrade package
-      become: yes
-      become_method: sudo
-      yum:
-        name: leapp-upgrade
-        state: present
-        enablerepo: ol7_leapp,ol7_latest
-        update_cache: yes
+    - name: Add Leapp repositories
+      command: yum-config-manager --add-repo=http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
+
+    - name: Add Leapp repositories
+      command: yum-config-manager --add-repo=http://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64
+
+      
 
         
 
