@@ -31,7 +31,8 @@
 
 
     - name: Clear version locks using yum
-      command: yum versionlock clear
+       shell: |
+         yum versionlock clear
 
     - name: Performing update
       command: ymu update -y
