@@ -33,6 +33,17 @@
     - name: Clear version locks using yum
       command: yum versionlock clear
 
+    - name: Performing update
+      command: ymu update -y
+
+    - name: Wait for system to be up
+      wait_for:
+        host: "{{ inventory_hostname }}"
+        port: 22
+        state: started
+        delay: 10
+        timeout: 300
+
 
     
 
