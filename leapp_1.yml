@@ -4,6 +4,13 @@
   become: yes  # Enable privilege escalation
 
   tasks:
+
+    - name: Install mokutil
+      become: yes
+      yum:
+       name: mokutil
+       state: present
+       
     - name: Check Secure Boot status
       command: mokutil --sb-state
       register: secure_boot_output
