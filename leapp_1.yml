@@ -42,9 +42,21 @@
     - name: Performing update
       command: yum update -y
 
-    - name: reboot system
+    - name: Reboot system
       reboot:
         reboot_timeout: 300
+
+    - name: Install leapp-upgrade package
+      become: yes
+      become_method: sudo
+      yum:
+        name: leapp-upgrade
+        state: present
+        enablerepo: ol7_leapp,ol7_latest
+        update_cache: yes
+
+        
+
 
 
     
