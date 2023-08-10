@@ -42,13 +42,9 @@
     - name: Performing update
       command: yum update -y
 
-    - name: Wait for system to be up
-      wait_for:
-        host: "{{ inventory_hostname }}"
-        port: 22
-        state: started
-        delay: 10
-        timeout: 300
+    - name: reboot system
+      reboot:
+        reboot_timeout: 300
 
 
     
