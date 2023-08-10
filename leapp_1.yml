@@ -29,6 +29,13 @@
     - name: Set locale using localectl
       command: localectl set-locale LANG=en_US.UTF-8
 
+
+    - name: Clear version locks using yum
+      command: yum versionlock clear
+
+
+    
+
         
 
      
