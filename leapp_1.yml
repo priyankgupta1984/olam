@@ -2,6 +2,9 @@
 - name: Preparing the hosts for leapp Upgrade
   hosts: all
   become: yes  # Enable privilege escalation
+  vars_files:
+    - vars/defaults.yml
+    - vars/vars.yml
 
   tasks:
 
