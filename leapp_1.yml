@@ -47,12 +47,10 @@
         reboot_timeout: 300
 
     - name: Enable repository if not already enabled
-      command: yum-config-manager --add-repo=http://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64
+      command: yum-config-manager --enable-repo=ol7_leapp,ol7_latest
       ignore_error: yes
 
-    - name: Enable repository if not already enabled
-      command: yum-config-manager --add-repo=http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
-      ignore_error: yes
+
 
 
 
