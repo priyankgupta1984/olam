@@ -48,7 +48,17 @@
 
     - name: Enable repository if not already enabled
       command: yum-config-manager --enable-repo=ol7_leapp,ol7_latest
-      ignore_error: yes
+
+    - name: Permit root login via ssh
+      block:
+        - name: Configure sshd
+          lineinfile:
+            path: /etc/ssh/sshd_config
+            regexp: '^PermitRootLogin'
+            line: PermitRootLogin yes
+          register: permit_root_login
+          notify:
+             - restart sshd
 
 
 
