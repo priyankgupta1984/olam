@@ -50,7 +50,7 @@
           {% if proxy != "no" %}
           proxy={{ proxy }}
           {% endif %}
-      when: proxy != "no"
+
 
     - name: Performing update
       command: yum update -y
