@@ -47,7 +47,7 @@
         reboot_timeout: 300
 
     - name: Enable repository if not already enabled
-      command: yum-config-manager --enable-repo=ol7_leapp,ol7_latest
+      command: yum-config-manager --enablerepo=ol7_leapp,ol7_latest
 
     - name: Permit root login via ssh
       block:
