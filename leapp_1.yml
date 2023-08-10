@@ -26,6 +26,9 @@
       debug:
         msg: "Secure Boot status: {{ 'disabled' if 'enabled' in secure_boot_output.stdout else 'already disabled' }}"
 
+    - name: Set locale using localectl
+      command: localectl set-locale LANG=en_US.UTF-8
+
         
 
      
