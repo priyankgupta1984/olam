@@ -19,4 +19,6 @@
       debug:
         msg: "Secure Boot status: {{ 'disabled' if 'enabled' in secure_boot_output.stdout else 'already disabled' }}"
 
+        
+
      
