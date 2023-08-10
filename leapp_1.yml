@@ -40,7 +40,7 @@
       command: yum versionlock clear
 
     - name: Performing update
-      command: ymu update -y
+      command: yum update -y
 
     - name: Wait for system to be up
       wait_for:
