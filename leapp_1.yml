@@ -10,6 +10,12 @@
       yum:
        name: mokutil
        state: present
+
+    - name: Install yum versionlock plugin
+      become: yes
+      yum:
+       name: yum-plugin-versionlock
+       state: present
        
     - name: Check Secure Boot status
       command: mokutil --sb-state
