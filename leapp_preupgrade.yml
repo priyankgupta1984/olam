@@ -17,8 +17,7 @@
     - name: Run leapp pre upgrade
       ansible.builtin.shell: >
           set -o pipefail;
-          leapp preupgrade
-           {{ leapp_switch }}
+          leapp preupgrade --oraclelinux
 
 - name: Search for Risk Factors
   hosts: all
