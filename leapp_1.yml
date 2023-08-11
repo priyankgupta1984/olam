@@ -55,10 +55,6 @@
     - name: Performing update
       command: yum update -y
 
-    - name: Reboot system
-      reboot:
-        reboot_timeout: 300
-
     - name: Enable repository if not already enabled
       command: yum-config-manager --enablerepo=ol7_leapp,ol7_latest
 
@@ -76,8 +72,11 @@
             regexp: '^PermitRootLogin'
             line: PermitRootLogin yes
           register: permit_root_login
-          notify:
-             - restart sshd
+
+     - name: Reboot system
+       reboot:
+         reboot_timeout: 300
+     
 
 
 
