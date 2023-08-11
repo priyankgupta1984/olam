@@ -6,16 +6,6 @@
     - vars/defaults.yml
     - vars/vars.yml
     
-- name: Cleanup previous preupgrade reports
-  file:
-    path: '{{ item }}'
-    state: absent
-  loop:
-    - /var/log/leapp/leapp-report.txt
-    - /var/log/leapp/leapp-report.json
-  when:
-    - 'not leapp_skip_preupgrade_cleanup | bool'
-
 - name: Run leapp pre upgrade
   hosts: all
   become: yes
