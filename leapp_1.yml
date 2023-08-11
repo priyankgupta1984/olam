@@ -73,8 +73,8 @@
             line: PermitRootLogin yes
           register: permit_root_login
 
-     - name: Reboot system
-       reboot:
+    - name: Reboot system
+      reboot:
          reboot_timeout: 300
      
 
