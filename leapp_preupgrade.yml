@@ -15,7 +15,7 @@
 
   tasks:
     - name: Run leapp pre upgrade
-      command: leapp preupgrade {{ leapp_switch }}
+      command: "set -o pipefail && leapp preupgrade {{ leapp_switch }}"
 
 - name: Search for Risk Factors
   hosts: all
