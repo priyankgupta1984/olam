@@ -15,7 +15,10 @@
 
   tasks:
     - name: Run leapp pre upgrade
-      command: "set -o pipefail && leapp preupgrade {{ leapp_switch }}"
+      ansible.builtin.shell: >
+          set -o pipefail;
+          leapp preupgrade
+           {{ leapp_switch }}
 
 - name: Search for Risk Factors
   hosts: all
