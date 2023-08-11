@@ -27,7 +27,7 @@
   ansible.builtin.set_fact:
         risk_factor_sections: "{{ leapp_report_content.content | b64decode | ansible.builtin.regex_findall('(Risk Factor: high \\(inhibitor\\)[\\s\\S]*?)(?=Risk Factor: high \\(inhibitor\\)|$)') }}"
 
-- name: Print Risk Factor: high (inhibitor) sections
+- name: Print
   ansible.builtin.debug:
         var: risk_factor_sections
 
