@@ -16,4 +16,7 @@
   tasks:
     - name: Run leapp pre upgrade
       command: leapp preupgrade {{ leapp_switch }}
+      ignore_error: yes
+
+
       
