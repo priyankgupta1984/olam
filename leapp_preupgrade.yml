@@ -18,7 +18,7 @@
       command: leapp preupgrade {{ leapp_switch }}
       ignore_error: yes
 
-- name: Search for "Risk Factor: high (inhibitor)" sections in leapp-report
+- name: Search for "Risk Factor high (inhibitor)" sections in leapp-report
 
   tasks:
     - name: Read leapp-report file
