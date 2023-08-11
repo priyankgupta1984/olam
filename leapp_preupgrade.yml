@@ -2,8 +2,10 @@
 - name: Leapp Preupgrade stage
   hosts: all
   become: yes
-  
-  vars:
+  vars_files:
+    - vars/defaults.yml
+    - vars/vars.yml
+    
 - name: Cleanup previous preupgrade reports
   file:
     path: '{{ item }}'
