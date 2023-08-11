@@ -1,4 +1,19 @@
 ---
+- name: Leapp Preupgrade stage
+  hosts: all
+  become: yes
+  
+  vars:
+- name: Cleanup previous preupgrade reports
+  file:
+    path: '{{ item }}'
+    state: absent
+  loop:
+    - /var/log/leapp/leapp-report.txt
+    - /var/log/leapp/leapp-report.json
+  when:
+    - 'not leapp_skip_preupgrade_cleanup | bool'
+
 - name: Run leapp pre upgrade
   hosts: all
   become: yes
@@ -9,3 +24,4 @@
   tasks:
     - name: Run leapp pre upgrade
       command: leapp preupgrade {{ leapp_switch }}
+      
