@@ -23,7 +23,7 @@
         path: /var/log/leapp/leapp-report.txt # Replace with the actual path to your leapp-report file
   register: leapp_report_content
 
-- name: Split content into sections based on "Risk Factor: high (inhibitor)"
+- name: Filtering
   ansible.builtin.set_fact:
         risk_factor_sections: "{{ leapp_report_content.content | b64decode | ansible.builtin.regex_findall('(Risk Factor: high \\(inhibitor\\)[\\s\\S]*?)(?=Risk Factor: high \\(inhibitor\\)|$)') }}"
 
