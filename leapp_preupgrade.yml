@@ -16,21 +16,22 @@
   tasks:
     - name: Run leapp pre upgrade
       command: leapp preupgrade {{ leapp_switch }}
-      
 
-- name: Read leapp-report file
-  ansible.builtin.slurp:
-        path: /var/log/leapp/leapp-report.txt # Replace with the actual path to your leapp-report file
-  register: leapp_report_content
+- name: Search for Risk Factors
+  hosts: all
+  gather_facts: false
 
-- name: Filtering
-  ansible.builtin.set_fact:
+  tasks:
+    - name: Read leapp-report file
+      ansible.builtin.slurp:
+        path: /var/log/leapp/leapp-report.txt  # Replace with the actual path to your leapp-report file
+      register: leapp_report_content
+
+    - name: Split content 
+      ansible.builtin.set_fact:
         risk_factor_sections: "{{ leapp_report_content.content | b64decode | ansible.builtin.regex_findall('(Risk Factor: high \\(inhibitor\\)[\\s\\S]*?)(?=Risk Factor: high \\(inhibitor\\)|$)') }}"
 
-- name: Print
-  ansible.builtin.debug:
+    - name: Print Risk Factor
+      ansible.builtin.debug:
         var: risk_factor_sections
-
-
-
       
