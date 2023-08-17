@@ -7,7 +7,15 @@
     - vars/vars.yml
 
   tasks:
-
+    - name: Append proxy configuration to yum.conf
+      blockinfile:
+        path: /etc/yum.conf
+        marker: "# {mark} ANSIBLE MANAGED BLOCK - Proxy Configuration"
+        block: |
+          {% if proxy != "no" %}
+          proxy={{ proxy }}
+          {% endif %}
+          
     - name: Install mokutil
       become: yes
       yum:
@@ -41,16 +49,6 @@
 
     - name: Clear version locks using yum
       command: yum versionlock clear
-
-    - name: Append proxy configuration to yum.conf
-      blockinfile:
-        path: /etc/yum.conf
-        marker: "# {mark} ANSIBLE MANAGED BLOCK - Proxy Configuration"
-        block: |
-          {% if proxy != "no" %}
-          proxy={{ proxy }}
-          {% endif %}
-
 
     - name: Performing update
       command: yum update -y
