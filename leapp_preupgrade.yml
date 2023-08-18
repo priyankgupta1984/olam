@@ -16,10 +16,11 @@
   tasks:
      - name: Run leapp pre upgrade
        ansible.builtin.shell: >
-          set -o pipefail;
-          leapp preupgrade
-          2>&1 | tee -a  /var/log/leapp/leapp-preupgrade.log
-      ignore_errors: yes
+          set -o pipefail && leapp preupgrade --oraclelinux >/dev/null 2>&1; exit $?
+       register: leapp_result
+       failed_when: leapp_result.rc != 0
+       changed_when: false
+       ignore_errors: yes
 
 - name: Search for Risk Factors
   hosts: all
