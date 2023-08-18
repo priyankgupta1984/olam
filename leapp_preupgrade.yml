@@ -19,6 +19,7 @@
           set -o pipefail;
           leapp preupgrade
           2>&1 | tee -a  /var/log/leapp/leapp-preupgrade.log
+      ignore_errors: yes
 
 - name: Search for Risk Factors
   hosts: all
