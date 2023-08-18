@@ -22,21 +22,21 @@
        changed_when: false
        ignore_errors: yes
 
-- name: Search for Risk Factors
+- name: Search for "Risk Factor: high" in leapp-report
   hosts: all
   gather_facts: false
 
   tasks:
     - name: Read leapp-report file
-      ansible.builtin.slurp:
-        path: /var/log/leapp/leapp-report.txt  
+      ansible.builtin.shell: cat /var/log/leapp/leapp-report.txt
       register: leapp_report_content
 
-    - name: Split content 
+    - name: Extract lines with "Risk Factor: high"
       ansible.builtin.set_fact:
-        risk_factor_sections: "{{ leapp_report_content.content | b64decode | ansible.builtin.regex_findall('(Risk Factor: high \\(inhibitor\\)[\\s\\S]*?)(?=Risk Factor: high \\(inhibitor\\)|$)') }}"
+        risk_factor_lines: "{{ leapp_report_content.stdout_lines | select('search', 'Risk Factor: high') | list }}"
 
-    - name: Print Risk Factor
+    - name: Print lines with "Risk Factor: high"
       ansible.builtin.debug:
-        var: risk_factor_sections
+        var: risk_factor_lines
+
       
