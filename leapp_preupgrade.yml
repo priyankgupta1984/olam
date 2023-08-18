@@ -14,10 +14,13 @@
     leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
 
   tasks:
-    - name: Run leapp pre upgrade
-      ansible.builtin.shell: >
-          set -o pipefail;
-          leapp preupgrade --oraclelinux
+     - name: Run leapp pre upgrade
+       ansible.builtin.command: >
+          set -o pipefail && leapp preupgrade --oraclelinux >/dev/null 2>&1
+       register: leapp_output
+       failed_when: leapp_output.rc != 0
+       changed_when: false
+
 
 - name: Search for Risk Factors
   hosts: all
