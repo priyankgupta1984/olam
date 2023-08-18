@@ -22,21 +22,14 @@
        changed_when: false
        ignore_errors: yes
 
-- name: Search for "Risk Factor high (inhibitor)" in leapp-report
-  hosts: all
-  gather_facts: false
+     - name: Debug leapp preupgrade output
+       debug:
+         var: leapp_result
+         verbosity: 2
 
-  tasks:
-    - name: Read leapp-report file
-      ansible.builtin.shell: cat /var/log/leapp/leapp-report.txt
-      register: leapp_report_content
-
-    - name: Extract lines with "Risk Factor high (inhibitor)"
-      ansible.builtin.set_fact:
-        risk_factor_lines: "{{ leapp_report_content.stdout_lines | select('search', 'Risk Factor: high \\(inhibitor\\)') | list }}"
-
-    - name: Print lines with "Risk Facto high (inhibitor)"
-      ansible.builtin.debug:
-        var: risk_factor_lines
+     - name: Print leapp preupgrade report variable
+       debug:
+        var: leapp_result
+        verbosity: 2
 
       
