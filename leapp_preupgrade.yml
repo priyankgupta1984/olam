@@ -24,7 +24,7 @@
        
      - name: Print lines 
        ansible.builtin.shell: grep -i -A5 "Risk Factor" /var/log/leapp/leapp-report.txt
-        register: risk_factor_lines
+       register: risk_factor_lines
 
      - name: Display lines 
        ansible.builtin.debug:
