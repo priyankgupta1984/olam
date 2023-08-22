@@ -5,13 +5,8 @@
   vars_files:
     - vars/defaults.yml
     - vars/vars.yml
-    
-- name: Run leapp pre upgrade
-  hosts: all
-  become: yes
-  become_method: sudo
-  vars:
-    leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
+  vars:    
+     leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
 
   tasks:
      - name: Run leapp pre upgrade
