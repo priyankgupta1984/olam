@@ -30,4 +30,17 @@
        ansible.builtin.debug:
           var: risk_factor_lines.stdout_lines
 
+    - name: Create directories for hostnames
+      ansible.builtin.file:
+        path: "/tmp/{{ item }}"
+        state: directory
+      loop: "{{ remote_hostnames.split(',') }}"
+
+    - name: Copy files from remote to local
+      ansible.builtin.copy:
+        src: "/var/log/leapp/"
+        dest: "/tmp/{{ item }}/"
+        remote_src: yes
+      loop: "{{ remote_hostnames.split(',') }}"
+
       
