@@ -33,7 +33,7 @@
 
      - name: Copy files from remote to local
        ansible.builtin.fetch:
-         src: "/var/log/leapp/"
+         src: "/var/log/leapp/leapp-report.txt"
          dest: "/tmp/{{ item }}/"
        loop: "{{ remote_hostnames.split(',') }}"
 
