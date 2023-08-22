@@ -6,7 +6,7 @@
   tasks:
       - name: Fetch files from remote host using fetch
         ansible.builtin.fetch:
-          src: "/var/log/leapp/leapp-report.txt"
+          src: "/tmp/test.txt"
           dest: "/tmp/"
         delegate_to: localhost
         
