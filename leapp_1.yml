@@ -54,7 +54,10 @@
       command: yum update -y
 
     - name: Enable repository if not already enabled
-      command: yum-config-manager --enablerepo=ol7_leapp,ol7_latest
+      ansible.builtin.yum_repository:
+           name: ol7_leapp
+           state: present
+      notify: yum-clean-metadata
 
     - name: Install Leapp
       become: yes
