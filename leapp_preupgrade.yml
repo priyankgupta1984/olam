@@ -36,7 +36,7 @@
          src: "/var/log/leapp/leapp-report.txt"
          dest: "/tmp/{{ remote_hostnames }}/"
          flat: yes
-       delegate_to: localhost
+       
 
        
       
