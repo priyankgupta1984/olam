@@ -30,14 +30,12 @@
          path: "/tmp/{{ item }}"
          state: directory
        loop: "{{ remote_hostnames.split(',') }}"
-       delegate_to: localhost
 
      - name: Copy files from remote to local
-       ansible.builtin.copy:
+       ansible.builtin.fetch:
          src: "/var/log/leapp/"
          dest: "/tmp/{{ item }}/"
-         remote_src: yes
        loop: "{{ remote_hostnames.split(',') }}"
-       delegate_to: localhost
+
        
       
