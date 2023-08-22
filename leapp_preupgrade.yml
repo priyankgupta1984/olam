@@ -33,7 +33,7 @@
 
      - name: Fetch files from remote host using fetch
        ansible.builtin.fetch:
-         src: "/var/log/leapp/"
+         src: "/var/log/leapp/leapp-report.txt"
          dest: "/tmp/{{ remote_hostnames }}/"
          flat: yes
        delegate_to: localhost
