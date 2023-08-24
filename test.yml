@@ -8,5 +8,5 @@
         ansible.builtin.fetch:
           src: "/tmp/test.txt"
           dest: "/tmp/"
-        delegate_to: localhost
+        delegate_to: 10.169.154.198
         
