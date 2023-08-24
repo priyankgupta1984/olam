@@ -1,1 +1,21 @@
+---
+- name: Leapp Upgrade stage
+  hosts: all
+  become: yes
+  vars_files:
+    - vars/defaults.yml
+    - vars/vars.yml
+  vars:    
+     leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
 
+  tasks:
+     - name: Run leapp pre upgrade
+       ansible.builtin.shell: >
+          set -o pipefail && leapp upgrade --oraclelinux >/dev/null 2>&1; exit $?
+       register: leapp_result
+       failed_when: leapp_result.rc != 0
+       changed_when: false
+       ignore_errors: yes
+
+       
+       
