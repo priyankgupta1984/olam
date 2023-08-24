@@ -40,7 +40,7 @@
          var: answerfile_content.stdout_lines
 
      - name: Remove_pam_pkcs11_module_check
-      ansible.builtin.command: sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
+       ansible.builtin.command: sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
        
 
        
