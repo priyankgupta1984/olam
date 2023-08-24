@@ -17,8 +17,8 @@
        changed_when: false
        ignore_errors: yes
 
-      - name: Reboot system
-        reboot:
+     - name: Reboot system
+       reboot:
          reboot_timeout: 300
 
        
