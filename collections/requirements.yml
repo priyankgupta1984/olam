@@ -4,4 +4,5 @@ collections:
   - name: ovirt.ovirt
   - name: community.general
   - name: ansible.posix
+  - name: awx.awx
  
