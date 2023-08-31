@@ -7,6 +7,17 @@
     - vars/vars.yml
 
   tasks:
+
+    - name: Display current release
+      ansible.builtin.shell: |
+        cat /etc/oracle-release
+        uname -r
+      register: system_info
+
+    - name: Print current release and kernel
+      ansible.builtin.debug:
+        var: system_info.stdout_lines
+        
     - name: Append proxy configuration to yum.conf
       blockinfile:
         path: /etc/yum.conf
