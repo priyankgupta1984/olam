@@ -76,6 +76,10 @@
             line: PermitRootLogin yes
           register: permit_root_login
 
+    - name: Remediation for KM note 2820209.1
+      ansible.builtin.command: >
+        sudo sed -i "/^enabled=0.*/a proxy={{ proxy }}" /etc/yum.repos.d/leapp-upgrade-repos-ol8.repo
+
     - name: Reboot system
       reboot:
          reboot_timeout: 300
