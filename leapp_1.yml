@@ -91,6 +91,13 @@
       ansible.builtin.command: >
         sudo sed -i "/^enabled=0.*/a proxy={{ proxy }}" /etc/yum.repos.d/leapp-upgrade-repos-ol8.repo
 
+    - name: Remove proxy configuration for 2820209.1
+      ansible.builtin.lineinfile:
+        path: /etc/yum.conf
+        state: absent
+        regexp: "^proxy="
+
+   
     - name: Reboot system
       reboot:
          reboot_timeout: 300
