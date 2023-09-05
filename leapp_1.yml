@@ -91,6 +91,8 @@
     - name: Get /var disk space usage
       shell: df -h /var | awk 'NR==2{print $5}' | sed 's/%//'
       register: var_space
+
+    - name: Displaying the usage of /var
       debug:
         msg: "/var disk space usage: {{ var_space.stdout }}%"
       
