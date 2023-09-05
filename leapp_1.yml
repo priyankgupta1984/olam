@@ -23,18 +23,10 @@
       register: last_update_date
       changed_when: false
 
-    - name: Get the current date
-      command: date +'%Y-%m-%d'
-      register: current_date
-      changed_when: false
-
-    - name: Calculate days since last update
-      set_fact:
-        days_since_last_update: "{{ (current_date.stdout | to_datetime('%Y-%m-%d') - last_update_date.stdout | to_datetime('%b %d')).days }}"
-    
+  
     - name: Display last update date and days since last update
       debug:
-        msg: "The system was last updated on {{ last_update_date.stdout }}. It's been {{ days_since_last_update }} days since the system was updated."
+        msg: "The system was last updated on {{ last_update_date.stdout }}"
 
     - name: Get a list of recently updated packages
       shell: rpm -qa --last | head -20
