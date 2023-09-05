@@ -61,6 +61,15 @@
     - name: Clear version locks using yum
       command: yum versionlock clear
 
+    - name: Get /var disk space usage
+      shell: df -h /var | awk 'NR==2{print $5}' | sed 's/%//'
+      register: var_space
+      
+    - name: Send warning if /var space usage is over 90%
+      debug:
+        msg: "/var disk space usage is over 90% - Current usage: {{ var_space.stdout }}%"
+      when: var_space.stdout|int > 90
+
     - name: Performing update
       command: yum update -y
 
