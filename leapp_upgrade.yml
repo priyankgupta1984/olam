@@ -16,4 +16,4 @@
        register: leapp_result
        failed_when: leapp_result.rc != 0
        changed_when: false
-       ignore_errors: yes
+       
