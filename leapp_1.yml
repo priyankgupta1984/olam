@@ -19,7 +19,7 @@
         var: system_info.stdout_lines
 
     - name: Get the date of the last system update
-      command: grep Updated /var/log/yum.log | tail -1 | cut -d' ' -f 1-2
+      command: "grep Updated /var/log/yum.log | tail -1 | cut -d' ' -f 1-2"
       register: last_update_date
       changed_when: false
 
