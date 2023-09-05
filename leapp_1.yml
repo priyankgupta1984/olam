@@ -37,7 +37,7 @@
         msg: "The system was last updated on {{ last_update_date.stdout }}. It's been {{ days_since_last_update }} days since the system was updated."
 
     - name: Get a list of recently updated packages
-      command: rpm -qa --last | head -20
+      shell: rpm -qa --last | head -20
       register: recent_updates
       changed_when: false
 
