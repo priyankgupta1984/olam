@@ -9,9 +9,6 @@
      leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
 
   tasks:
-
-     - name: Remove_pam_pkcs11_module_check
-       ansible.builtin.command: sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
        
      - name: Run leapp pre upgrade
        ansible.builtin.shell: >
@@ -34,6 +31,11 @@
          src: "/var/log/leapp/leapp-report.txt"
          dest: "/tmp/"
          flat: yes
+     - name: Remove_pam_pkcs11_module_check
+       ansible.builtin.command: sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
+
+     - name: Answer file
+       ansible.builtin.command: mv /var/log/leapp/answerfile.userchoices /var/log/leapp/answerfile
 
      - name: Display contents of answerfile
        ansible.builtin.shell: cat /var/log/leapp/answerfile
@@ -43,8 +45,7 @@
        ansible.builtin.debug:
          var: answerfile_content.stdout_lines
 
-     - name: Remove_pam_pkcs11_module_check
-       ansible.builtin.command: sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
+     
 
     
        
