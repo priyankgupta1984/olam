@@ -46,7 +46,7 @@
             path: /etc/yum.conf
             line: "proxy=http://{{ custom_proxy }}"
             state: "{{ 'present' if proxy else 'absent' }}"
-      when: custom_proxy != ''
+      when: proxy != ''
           
     - name: Install mokutil
       become: yes
