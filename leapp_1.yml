@@ -5,8 +5,7 @@
   vars_files:
     - vars/defaults.yml
     - vars/vars.yml
-  vars:
-    proxy: "{{ custom_proxy | default('') }}"
+  
 
   tasks:
 
@@ -39,14 +38,6 @@
       debug:
         msg: "Recently updated packages:\n{{ recent_updates.stdout }}"
       
-    - name: Configure YUM proxy
-      block:
-        - name: Add or remove proxy settings in yum.conf
-          lineinfile:
-            path: /etc/yum.conf
-            line: "proxy=http://{{ custom_proxy }}"
-            state: "{{ 'present' if proxy else 'absent' }}"
-      when: proxy != ''
           
     - name: Install mokutil
       become: yes
@@ -121,16 +112,6 @@
             line: PermitRootLogin yes
           register: permit_root_login
 
-    - name: Remediation for KM note 2820209.1
-      ansible.builtin.command: >
-        sudo sed -i "/^enabled=0.*/a proxy={{ proxy }}" /etc/yum.repos.d/leapp-upgrade-repos-ol8.repo
-      when: proxy != ''
-
-    - name: Remove proxy configuration for 2820209.1
-      ansible.builtin.lineinfile:
-        path: /etc/yum.conf
-        state: absent
-        regexp: "^proxy="
 
     - name: Install Cockpit packages
       yum:
