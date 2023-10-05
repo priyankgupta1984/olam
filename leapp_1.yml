@@ -120,10 +120,8 @@
         state: present
 
     - name: Start and enable Cockpit service
-      systemd:
-        name: cockpit
-        enabled: yes
-        state: started
+      command: "systemctl enable --now cockpit"
+
         
     - name: Ensure the Cockpit port is open in the firewall
       command: firewall-cmd --permanent --add-service=cockpit
