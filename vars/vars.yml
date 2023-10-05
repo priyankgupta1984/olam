@@ -1,1 +1,1 @@
-proxy: "{{ custom_proxy }}"
+proxy: "{{ custom_proxy| default('') }}" }}"
