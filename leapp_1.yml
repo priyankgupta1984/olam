@@ -118,6 +118,10 @@
         name:
           - cockpit
         state: present
+   
+    - name: Reboot system
+      reboot:
+         reboot_timeout: 300
 
     - name: Start and enable Cockpit service
       command: "systemctl enable --now cockpit"
@@ -129,10 +133,6 @@
     - name: Reload Firewall Rules
       command: firewall-cmd --reload
 
-   
-    - name: Reboot system
-      reboot:
-         reboot_timeout: 300
      
 
 
