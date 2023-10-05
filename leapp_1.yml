@@ -39,14 +39,14 @@
       debug:
         msg: "Recently updated packages:\n{{ recent_updates.stdout }}"
       
-    - name: Append proxy configuration to yum.conf
-      blockinfile:
-        path: /etc/yum.conf
-        marker: "# {mark} ANSIBLE MANAGED BLOCK - Proxy Configuration"
-        block: |
-          {% if proxy != "no" %}
-          proxy={{ proxy }}
-          {% endif %}
+    - name: Configure YUM proxy
+      block:
+        - name: Add or remove proxy settings in yum.conf
+          lineinfile:
+            path: /etc/yum.conf
+            line: "proxy=http://{{ custom_proxy }}"
+            state: "{{ 'present' if proxy else 'absent' }}"
+      when: proxy_server != ''
           
     - name: Install mokutil
       become: yes
