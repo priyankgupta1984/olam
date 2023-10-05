@@ -124,12 +124,9 @@
         name: cockpit
         enabled: yes
         state: started
-
-    - name: Open Cockpit port in the firewall
-      firewalld:
-        service: cockpit
-        permanent: yes
-        state: enabled
+        
+    - name: Ensure the Cockpit port is open in the firewall
+      command: firewall-cmd --permanent --add-service=cockpit
 
     - name: Reload Firewall Rules
       command: firewall-cmd --reload
