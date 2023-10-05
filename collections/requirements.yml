@@ -1,6 +1,5 @@
 ---
 collections:
-  - name: oracle.oci
   - name: ovirt.ovirt
   - name: ansible.posix
   - name: awx.awx
