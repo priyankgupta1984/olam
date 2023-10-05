@@ -5,6 +5,8 @@
   vars_files:
     - vars/defaults.yml
     - vars/vars.yml
+  vars:
+    proxy: "{{ custom_proxy | default('') }}"
 
   tasks:
 
