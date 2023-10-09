@@ -1,0 +1,9 @@
+---
+    - name: Fetching the file from Remote host to Ansible Controller
+      fetch:
+        src: "/var/log/messages"
+        dest: "/test/"
+        owner: awx
+        group: awx
+        mode: 0775
+        flat: yes
