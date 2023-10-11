@@ -5,6 +5,7 @@
     yum:
       name: httpd
       state: present
+      
   - name: ensure httpd is running
     service:
       name: httpd 
