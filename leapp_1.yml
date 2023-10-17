@@ -10,7 +10,7 @@
 
     - name: Display current release
       ansible.builtin.shell: |
-        cat /etc/oracle-release
+        cat /etc/*release
         uname -r
       register: system_info
 
@@ -20,7 +20,7 @@
 
     - name: Check if CentOS 7
       set_fact:
-        is_centos7: "{{ 'CentOS Linux 7' in system_info.stdout }}"
+        is_centos7: "{{ 'CentOS Linux ' in system_info.stdout }}"
 
     - name: Check if CentOS 7
       set_fact:
