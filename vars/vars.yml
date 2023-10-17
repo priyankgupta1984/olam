@@ -1,1 +1,1 @@
-
+ proxy: "{{ use_proxy | default('false') }}"
