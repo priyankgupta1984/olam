@@ -27,7 +27,7 @@
         is_oraclelinux: "{{ 'Oracle Linux' in system_info.stdout }}"   
 
     - name: Installing ELevate
-      command: "sudo yum install -y http://repo.almalinux.org/elevate/elevate-release-latest-el$(rpm --eval %rhel).noarch.rpm"
+      command: "sudo yum install -y http://repo.almalinux.org/elevate/elevate-release-latest-el7.noarch.rpm"
       when: is_centos7
       
     - name: Get the date of the last system update
