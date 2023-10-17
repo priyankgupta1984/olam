@@ -27,11 +27,9 @@
         is_oraclelinux: "{{ 'Oracle Linux' in system_info.stdout }}"   
 
     - name: Installing ELevate
-      yum:
-        name: elevate-release-latest-el7.noarch.rpm      
-        state: present
-      when: is_centos7
-
+      command: "sudo yum install -y http://repo.almalinux.org/elevate/elevate-release-latest-el7.noarch.rpm
+      ignore_errors: yes
+      
     - name: Installing Leapp Packages for Centos 
       yum:
         name: leapp
