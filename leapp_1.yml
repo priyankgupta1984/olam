@@ -119,7 +119,7 @@
            state: present
            baseurl: http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
            description: Leapp Upgrade Repo
-       when: is_oraclelinux
+      when: is_oraclelinux
       
 
     - name: Install Leapp
