@@ -1,1 +1,5 @@
  proxy: "{{ use_proxy | default('false') }}"
+# Proxy details. Leave empty if not using proxy.
+my_https_proxy:
+my_http_proxy:
+my_no_proxy:
