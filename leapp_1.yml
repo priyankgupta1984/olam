@@ -21,7 +21,15 @@
     - name: Check if CentOS 7
       set_fact:
         is_centos7: "{{ 'CentOS Linux 7' in system_info.stdout }}"
-        
+
+    - name: Check if CentOS 7
+      set_fact:
+        is_oraclelinux: "{{ 'Oracle Linux' in system_info.stdout }}"   
+
+    - name: Installing ELevate
+      command: sudo yum install -y http://repo.almalinux.org/elevate/elevate-release-latest-el$(rpm --eval %rhel).noarch.rpm
+      when: is_centos7
+      
     - name: Get the date of the last system update
       shell: grep Updated /var/log/yum.log | tail -1 | cut -d' ' -f 1-2
       register: last_update_date
