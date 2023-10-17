@@ -6,7 +6,6 @@
     - vars/defaults.yml
     - vars/vars.yml
   
-
   tasks:
 
     - name: Display current release
@@ -24,7 +23,6 @@
       register: last_update_date
       changed_when: false
 
-  
     - name: Display last update date and days since last update
       debug:
         msg: "The system was last updated on {{ last_update_date.stdout }}"
@@ -37,7 +35,14 @@
     - name: Display recently updated packages
       debug:
         msg: "Recently updated packages:\n{{ recent_updates.stdout }}"
-      
+
+    - name: Add proxy config to dnf.conf
+      lineinfile:
+        path: /etc/yum.conf
+        line: "proxy={{ my_https_proxy }}"
+      state: present
+      when:
+       - proxy == true      
           
     - name: Install mokutil
       become: yes
