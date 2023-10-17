@@ -22,14 +22,21 @@
       set_fact:
         is_centos7: "{{ 'CentOS Linux ' in system_info.stdout }}"
 
-    - name: Check if CentOS 7
+    - name: Check if Oracle Linux
       set_fact:
         is_oraclelinux: "{{ 'Oracle Linux' in system_info.stdout }}"   
 
     - name: Installing ELevate
       command: "sudo yum install -y http://repo.almalinux.org/elevate/elevate-release-latest-el7.noarch.rpm"
       when: is_centos7
-      
+
+    - name: Installing Leapp Packages for Centos 
+      yum:
+        name: leapp
+        state: present
+        name: leapp-data-oraclelinux
+      when: is_centos7
+
     - name: Get the date of the last system update
       shell: grep Updated /var/log/yum.log | tail -1 | cut -d' ' -f 1-2
       register: last_update_date
@@ -48,7 +55,7 @@
       debug:
         msg: "Recently updated packages:\n{{ recent_updates.stdout }}"
 
-    - name: Add proxy config to dnf.conf
+    - name: Add proxy config to yum.conf
       lineinfile:
         path: /etc/yum.conf
         line: "proxy={{ my_https_proxy }}"
@@ -112,6 +119,7 @@
            state: present
            baseurl: http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
            description: Leapp Upgrade Repo
+       when: is_oraclelinux
       
 
     - name: Install Leapp
