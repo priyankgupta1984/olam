@@ -4,8 +4,9 @@
     - oracle.oci
   connection: local
   hosts: localhost
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.9
   tasks:
-  
      - name: Create governance_instance
        oci_access_governance_cp_governance_instance:
                tenancy_namespace: zs
