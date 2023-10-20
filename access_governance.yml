@@ -5,8 +5,13 @@
   connection: local
   hosts: localhost
   tasks:
-    - name: Delete governance_instance
-      oci_access_governance_cp_governance_instance:
-        governance_instance_id: "ocid1.agcsgovernanceinstance.oc1.iad.amaaaaaauna655qalglpgykmu2knpq2jfkgwoajyyk4bnecg5rvluyxqt6zq"
-        state: absent
+  
+     - name: Create governance_instance
+       oci_access_governance_cp_governance_instance:
+               tenancy_namespace: zs
+               compartment_id: ocid1.compartment.oc1..aaaaaaaafjjha3apzlrxkl63ndwgwgvn4caj6swrt7eefmywp7p3dkzcn4ya
+               idcs_access_token: r1}:]mXjgQWyKov(05-j
+               display_name: demo
+               license_type: NEW_LICENSE
+    
  
