@@ -3,4 +3,4 @@ collections:
   - name: ovirt.ovirt
   - name: ansible.posix
   - name: awx.awx
- 
+  - name: oracle.oci
