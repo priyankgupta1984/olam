@@ -53,9 +53,7 @@
     
   tasks:
     - block:
-        - set_fact:
-            SSH_AUTHORIZED_KEYS: "{{ lookup('file', './ssh/oci_id_rsa.pub') }}"
-            
+          
         - name: Create a VCN
           oci_network_vcn:
             compartment_id: "{{ instance_compartment }}"
@@ -150,7 +148,7 @@
                 hostname_label: "{{ instance_hostname }}"
                 subnet_id: "{{ instance_subnet_id }}"
             metadata:
-              ssh_authorized_keys: "{{ SSH_AUTHORIZED_KEYS }}"
+              ssh_authorized_keys: "ssh-rsa"
           register: result
 
         - name: Print instance details
