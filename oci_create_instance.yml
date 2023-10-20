@@ -95,7 +95,6 @@
             display_name: "{{ subnet_name }}"
             prohibit_public_ip_on_vnic: false
             route_table_id: "{{ rt_id }}"
-            security_list_ids: [ "{{ instance_security_list_ocid }}" ]
             vcn_id: '{{ vcn_id }}'
             dns_label: "{{ subnet_dns_label }}"
           register: result
