@@ -20,3 +20,9 @@
     service: 
       name: firewalld 
       state: restarted
+
+  - name: ensure httpd is running
+    service:
+      name: httpd 
+      state: started
+  
