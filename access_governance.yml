@@ -1,1 +1,11 @@
 
+- name: List Compartment Details
+  collections:
+    - oracle.oci
+  connection: local
+  hosts: localhost
+  tasks:
+    - name: Delete governance_instance
+      oci_access_governance_cp_governance_instance:
+      governance_instance_id: "ocid1.agcsgovernanceinstance.oc1.iad.amaaaaaauna655qalglpgykmu2knpq2jfkgwoajyyk4bnecg5rvluyxqt6zq"
+      state: absent
