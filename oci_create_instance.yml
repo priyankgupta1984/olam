@@ -113,7 +113,7 @@
                 hostname_label: "{{ instance_hostname }}"
                 subnet_id: "{{ instance_subnet_id }}"
             metadata:
-              ssh_authorized_keys: "ssh-rsa"
+              ssh_authorized_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5NQwSCjsMQ15eCXHVe+yWeL5Dt5Z60VutEko18j6srbHSbe9n8MxS9ys4JGs9BvR51MPH8+x9mKronQ8/gBxtiIj9hNlhcm1NmpyLF0Nd3mR5cP6N/kal6AtWPDSTTcObQUBk6ZCRGcxs9Ckf4Udb9qMnVicqNY40xEe+6xgnXypAJQhuIHyAZEWv2/JQuqEPZ7B2aA+z2EatRk329ARvnRIQZXAO2Qz1F1Yba3JOEf72fCzb3zbs58j3/Y/3zISJI1D9H7LqYfe+701MzoZN9rrzWMhSlzwrZPtIH0AwzM5jpMMDGrk8bV7XMFSEt/2l+SLkDAiCRruBs6rWTt+5 ssh-key-2023-10-20"
           register: result
 
         - name: Print instance details
