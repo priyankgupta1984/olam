@@ -29,4 +29,4 @@
 
     - name: Print VCN
       debug:
-        msg: "{{ vcn }}"    
+        msg: "{{ vcn.display_name }}"    
