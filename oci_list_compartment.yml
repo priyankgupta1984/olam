@@ -11,3 +11,22 @@
     - name: Print compartment details
       debug:
         msg: "{{ output }}"
+
+    - name: List instances
+      oci_compute_instance_facts:
+        compartment_id: "{{ instance_compartment }}"
+      register: instances
+
+    - name: Print Instances
+      debug:
+        msg: "{{ instances }}"
+
+    
+    - name: List vcns
+      oci_network_vcn_facts:
+         compartment_id: {{ instance_compartment }}
+      register: vnc
+
+    - name: Print VCN
+      debug:
+        msg: "{{ vcn }}"    
