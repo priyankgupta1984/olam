@@ -12,11 +12,6 @@
       debug:
         msg: "{{ output }}"
 
-    - name: Print compartment names
-      debug:
-        var: item.name
-      loop: "{{ output.compartments }}"
-
       
     - name: List instances
       oci_compute_instance_facts:
@@ -28,6 +23,11 @@
         msg: "{{ instances }}"
 
     
+    - name: Print compartment names
+      debug:
+        var: item.name
+      loop: "{{ instances.instances.anme }}"
+    
     - name: List vcns
       oci_network_vcn_facts:
          compartment_id: "{{ instance_compartment }}"
@@ -35,4 +35,4 @@
 
     - name: Print VCN
       debug:
-        msg: "{{ vcn.display_name }}"    
+        msg: "{{ vcn }}"    
