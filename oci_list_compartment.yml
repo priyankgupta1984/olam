@@ -25,7 +25,7 @@
     - name: List vcns
       oci_network_vcn_facts:
          compartment_id: "{{ instance_compartment }}"
-      register: vnc
+      register: vcn
 
     - name: Print VCN
       debug:
