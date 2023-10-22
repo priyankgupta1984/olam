@@ -15,7 +15,7 @@
     - name: Print compartment names
       debug:
         var: item.name
-      loop: "{{ output.data.compartments }}"
+      loop: "{{ output.compartments }}"
 
       
     - name: List instances
