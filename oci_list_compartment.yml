@@ -12,7 +12,7 @@
       debug:
         msg: "{{ output }}"
 
-     - name: Print compartment names
+    - name: Print compartment names
       debug:
         var: item.name
       loop: "{{ output.data.compartments }}"
