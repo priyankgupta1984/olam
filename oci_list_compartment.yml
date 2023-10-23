@@ -11,10 +11,8 @@
       
     - name: Print compartment names
       debug:
-        var: item.name
-      loop: "{{ output }}"
+        msg: "{{ output }}"
     
-
     - name: List instances
       oci_compute_instance_facts:
         compartment_id: "{{ instance_compartment }}"
