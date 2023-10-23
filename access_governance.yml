@@ -7,8 +7,7 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3.9
   tasks:
-     - name: Delete governance_instance
-       oci_access_governance_cp_governance_instance:
-         governance_instance_id: "ocid1.governanceinstance.oc1..xxxxxxEXAMPLExxxxxx"
-         state: absent    
+     - name: List
+       oci_access_governance_cp_governance_instance_configuration_facts:
+          compartment_id: "ocid1.compartment.oc1..aaaaaaaafjjha3apzlrxkl63ndwgwgvn4caj6swrt7eefmywp7p3dkzcn4ya"
  
