@@ -8,12 +8,13 @@
       oci_identity_compartment_facts:
         compartment_id: "{{ instance_compartment }}"
       register: output
-    - name: Print compartment details
-      debug:
-        msg: "{{ output.json |json_query(jmesquery)}}"
-      vars:
-         jmesquery: "[*].name"
       
+    - name: Print compartment names
+      debug:
+        var: item.name
+      loop: "{{ output }}"
+    
+
     - name: List instances
       oci_compute_instance_facts:
         compartment_id: "{{ instance_compartment }}"
@@ -22,13 +23,7 @@
     - name: Print Instances
       debug:
         msg: "{{ instances }}"
-
-    
-    - name: Print compartment names
-      debug:
-        var: item.name
-      loop: "{{ instances.instances.display_name }}"
-    
+  
     - name: List vcns
       oci_network_vcn_facts:
          compartment_id: "{{ instance_compartment }}"
