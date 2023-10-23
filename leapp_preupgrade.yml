@@ -7,6 +7,8 @@
     - vars/vars.yml
   vars:    
      leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
+     result_filename_prefix: /var/log/leapp/leapp-report
+     result_filename_json: "{{ result_filename_prefix }}.js
 
   tasks:
        
@@ -17,6 +19,17 @@
        failed_when: leapp_result.rc != 0
        changed_when: false
        ignore_errors: yes
+
+     - name: Parse report results
+       ansible.builtin.set_fact:
+           leapp_report_txt: "{{ results_txt.content | b64decode | split('\n') }}"
+           leapp_report_json: "{{ results_json.content | b64decode | from_json }}"
+
+     - name: Check for inhibitors
+       ansible.builtin.set_fact:
+         upgrade_inhibited: true
+       when: "'inhibitor' in item.flags"
+       loop: "{{ leapp_report_json.entries }}"
        
      - name: Print lines 
        ansible.builtin.shell: grep -i -A5 "Risk Factor" /var/log/leapp/leapp-report.txt
