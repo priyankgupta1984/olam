@@ -8,7 +8,7 @@
   vars:    
      leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
      result_filename_prefix: /var/log/leapp/leapp-report
-     result_filename_json: "{{ result_filename_prefix }}.js
+     result_filename_json: "{{ result_filename_prefix }}.js"
 
   tasks:
        
