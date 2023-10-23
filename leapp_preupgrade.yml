@@ -7,8 +7,7 @@
     - vars/vars.yml
   vars:    
      leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
-     result_filename_prefix: /var/log/leapp/leapp-report
-     result_filename_json: "{{ result_filename_prefix }}.js"
+     
 
   tasks:
        
@@ -22,12 +21,12 @@
 
      - name: Collect human readable report results
        ansible.builtin.slurp:
-           src: "{{ result_filename_prefix }}"
+           src: /var/log/leapp/leapp-report.txt
        register: results_txt
 
      - name: Collect JSON report results
        ansible.builtin.slurp:
-          src: "{{ result_filename_json }}"
+          src: /var/log/leapp/leapp-report.json
        register: results_json
 
      - name: Parse report results
