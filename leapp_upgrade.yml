@@ -12,7 +12,7 @@
        
      - name: Run leapp upgrade
        ansible.builtin.shell: >
-          set -o pipefail && leapp upgrade --oci >/dev/null 2>&1; exit $?
+          leapp upgrade --oci >/dev/null 2>&1; exit $?
        register: leapp_result
        failed_when: leapp_result.rc != 0
        changed_when: false
