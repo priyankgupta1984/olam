@@ -36,6 +36,16 @@
         name: leapp-data-oraclelinux
       when: is_centos7
 
+    - name: Check if rhn-setup is installed
+      command: rpm -qa | grep rhn-setup
+      register: rhn_setup_package
+      ignore_errors: yes  # Ignore errors if the package is not found
+
+    - name: Display message if rhn-setup is installed
+      debug:
+        msg: "Pacakge rhn-setup is installed. Please ensure the system is not registered with ULN"
+      when: rhn_setup_package.rc == 0  # The command succeeded
+
     - name: Get the date of the last system update
       shell: grep Updated /var/log/yum.log | tail -1 | cut -d' ' -f 1-2
       register: last_update_date
