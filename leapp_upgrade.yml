@@ -21,10 +21,10 @@
        changed_when: false
        ignore_errors: yes
 
-    - name: Reboot if Leapp upgrade was successful
-      ansible.builtin.reboot:
-        reboot_timeout: 5000  # You can adjust the timeout as needed
-      when: leapp_result.rc == 0
+     - name: Reboot if Leapp upgrade was successful
+       ansible.builtin.reboot:
+         reboot_timeout: 5000  # You can adjust the timeout as needed
+       when: leapp_result.rc == 0
 
      
        
