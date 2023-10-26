@@ -131,7 +131,7 @@
         name: ol7_leapp
         state: present
         baseurl: http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
-       description: Leapp Upgrade Repo
+        description: Leapp Upgrade Repo
       when: leapp_repo_enabled.rc != 0
 
     #- name: Enable repository if not already enabled
