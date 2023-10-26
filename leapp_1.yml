@@ -125,12 +125,15 @@
       register: leapp_repo_enabled
       ignore_errors: yes  # Ignore errors if the repository file doesn't exist
 
-    - name: Modify repository configuration to enable the Leapp repository
-      ansible.builtin.lineinfile:
-        path: /etc/yum.repos.d/oracle-linux-ol7.repo
-        regexp: '^enabled=0'
-        line: 'enabled=1'
-      when: leapp_repo_enabled.rc != 0  # Only modify the repo config if it's not already enabled
+    - name: Create or modify Leapp repository file
+      ansible.builtin.copy:
+        content: |
+          [ol7_leapp]
+          name=Leapp Upgrade Repo
+          baseurl=http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
+          enabled=1
+          gpgcheck=1
+        dest: /etc/yum.repos.d/oracle-linux-ol7.repo
 
 
     #- name: Enable Leapp repository if not already enabled
