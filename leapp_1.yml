@@ -120,11 +120,10 @@
     - name: Performing update
       command: yum update -y
 
-    - name: Get information about Leapp repository
-      ansible.builtin.yum_repository_info:
-        name: ol7_leapp
-      register: leapp_repo_info
-      ignore_errors: yes  # Ignore errors if the repository doesn't exist
+    - name: Check if Leapp repository is enabled
+      ansible.builtin.shell: grep -A5 leapp /etc/yum.repos.d/* | grep "enabled=0"
+      register: leapp_repo_enabled
+      ignore_errors: yes  # Ignore errors if the repository file doesn't exist
 
     - name: Enable Leapp repository if not already enabled
       ansible.builtin.yum_repository:
