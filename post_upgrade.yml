@@ -15,12 +15,12 @@
       ansible.builtin.debug:
         var: system_info.stdout_lines
 
-    - name: Check for residual Leapp packages
-      shell: "rpm -qa | grep el7 | grep leapp"
-      register: leapp_packages
+    - name: Check for residual Oracle Linux 7 packages
+      shell: "rpm -qa | grep el7 "
+      register: ol7_packages
       changed_when: false
 
     - name: Remove residual Leapp packages
       command: "dnf remove -y {{ item }}"
-      with_items: "{{ leapp_packages.stdout_lines }}"
+      with_items: "{{ ol7.stdout_lines }}"
       when: leapp_packages.stdout_lines | length > 0
