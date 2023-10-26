@@ -120,13 +120,27 @@
     - name: Performing update
       command: yum update -y
 
-    - name: Enable repository if not already enabled
+    - name: Get information about Leapp repository
+      ansible.builtin.yum_repository_info:
+        name: ol7_leapp
+      register: leapp_repo_info
+      ignore_errors: yes  # Ignore errors if the repository doesn't exist
+
+    - name: Enable Leapp repository if not already enabled
       ansible.builtin.yum_repository:
-           name: ol7_leapp
-           state: present
-           baseurl: http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
-           description: Leapp Upgrade Repo
-      when: is_oraclelinux
+        name: ol7_leapp
+        state: present
+        baseurl: http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
+        description: Leapp Upgrade Repo
+      when: not leapp_repo_info.enabled | default(false)
+
+    #- name: Enable repository if not already enabled
+    #  ansible.builtin.yum_repository:
+    #      name: ol7_leapp
+    #      state: present
+    #      baseurl: http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
+    #      description: Leapp Upgrade Repo
+    # when: is_oraclelinux
       
 
     - name: Install Leapp
