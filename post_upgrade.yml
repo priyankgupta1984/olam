@@ -1,1 +1,26 @@
+- name: Post Upgrade
+  hosts: all
+  become: yes  # Enable privilege escalation
 
+  
+  tasks:
+
+    - name: Display current release
+      ansible.builtin.shell: |
+        cat /etc/*release
+        uname -r
+      register: system_info
+
+    - name: Print current release and kernel
+      ansible.builtin.debug:
+        var: system_info.stdout_lines
+
+    - name: Check for residual Leapp packages
+      shell: "rpm -qa | grep el7 | grep leapp"
+      register: leapp_packages
+      changed_when: false
+
+    - name: Remove residual Leapp packages
+      command: "dnf remove -y {{ item }}"
+      with_items: "{{ leapp_packages.stdout_lines }}"
+      when: leapp_packages.stdout_lines | length > 0
