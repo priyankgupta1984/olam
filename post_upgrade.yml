@@ -23,4 +23,4 @@
     - name: Remove residual Leapp packages
       command: "dnf remove -y {{ item }}"
       with_items: "{{ ol7_packages.stdout_lines }}"
-      when: leapp_packages.stdout_lines | length > 0
+      when: ol7_packages.stdout_lines | length > 0
