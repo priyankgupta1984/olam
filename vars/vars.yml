@@ -1,4 +1,4 @@
 proxy: "{{ use_proxy | default('false') }}"
-leapp_switch: "{{ switch | default('oraclelinux) }}
+leapp_switch: "{{ switch | default('oraclelinux) }}"
 
 
