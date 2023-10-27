@@ -134,8 +134,8 @@
         #description: Leapp Upgrade Repo
       #when: leapp_repo_enabled.rc != 0
 
-   - name: Install Leapp
-     command: yum install -y leapp --enablerepo=ol7_leapp,ol7_latest
+    - name: Install Leapp
+      command: yum install -y leapp --enablerepo=ol7_leapp,ol7_latest
 
 
     - name: Install Leapp
