@@ -1,4 +1,4 @@
-proxy: "{{ use_proxy }}"
+proxy: true
 
 
 
