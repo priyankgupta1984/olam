@@ -1,5 +1,5 @@
 #Proxy for yum.com
-proxy: no
+proxy: yes
 
 #Cleanup previous leapp reports
 leapp_skip_preupgrade_cleanup: no
