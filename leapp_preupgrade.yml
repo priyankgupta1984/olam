@@ -13,7 +13,7 @@
        
      - name: Run leapp pre upgrade
        ansible.builtin.shell: >
-          set -o pipefail && leapp preupgrade {{ leapp_switch }} >/dev/null 2>&1; exit $?
+          leapp preupgrade --oci
        register: leapp_result
        failed_when: leapp_result.rc != 0
        changed_when: false
