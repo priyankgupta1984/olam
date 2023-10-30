@@ -1,4 +1,4 @@
-proxy: "{{ use_proxy | default('false') }}"
+proxy: "{{ use_proxy }}"
 
 
 
