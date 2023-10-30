@@ -1,4 +1,5 @@
 proxy: true
+my_https_proxy: "http://10.68.69.53:80"
 
 
 
