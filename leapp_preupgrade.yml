@@ -6,7 +6,7 @@
     - vars/defaults.yml
     - vars/vars.yml
   vars:    
-     leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
+     leapp_switch: ""
      
 
   tasks:
