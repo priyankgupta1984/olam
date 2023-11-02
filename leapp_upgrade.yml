@@ -6,7 +6,7 @@
     - vars/defaults.yml
     - vars/vars.yml
   vars:    
-     leapp_switch: "{{ leapp_switch | default('--oraclelinux') }}"
+     leapp_switch: ""
      
 
   tasks:
@@ -16,7 +16,7 @@
        
      - name: Run leapp upgrade
        ansible.builtin.shell: >
-         leapp upgrade --oci 
+         leapp upgrade {{ leapp_switch }}
        register: leapp_result
        failed_when: leapp_result.rc != 0
        changed_when: false
