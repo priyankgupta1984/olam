@@ -5,6 +5,9 @@
   vars_files:
     - vars/defaults.yml
     - vars/vars.yml
+  vars:    
+     proxy: ""
+     my_https_proxy: ""
   
   tasks:
 
