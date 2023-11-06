@@ -51,7 +51,7 @@
      - name: Fetch files from remote host using fetch
        ansible.builtin.fetch:
          src: "/var/log/leapp/leapp-report.txt"
-         dest: "/tmp/test"
+         dest: "/tmp/test/"
          flat: yes
      - name: Remove_pam_pkcs11_module_check
        ansible.builtin.command: sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
