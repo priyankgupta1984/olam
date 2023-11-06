@@ -1,7 +1,4 @@
 #Proxy for yum.com
-proxy: yes
+proxy: false
 
-#Cleanup previous leapp reports
-leapp_skip_preupgrade_cleanup: no
 
-log_file: /var/log/leapp/leapp-preupgrade.log
