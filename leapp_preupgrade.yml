@@ -53,6 +53,16 @@
          src: "/var/log/leapp/leapp-report.txt"
          dest: "/tmp/test/"
          flat: yes
+
+     - name: Copy files to the specified remote host
+       hosts: 150.136.108.206
+       tasks:
+        - name: Copy files to the remote host
+          copy:
+            src:  "/var/log/leapp/leapp-report.txt" # Source directory or file path on localhost
+            dest: "/tmp/test"  # Destination directory path on the remote host
+          become: yes  # If copying to a location with elevated privileges
+          
      - name: Remove_pam_pkcs11_module_check
        ansible.builtin.command: sudo leapp answer --section remove_pam_pkcs11_module_check.confirm=True
 
