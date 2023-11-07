@@ -13,7 +13,7 @@
        
      - name: Run leapp pre upgrade
        ansible.builtin.shell: >
-          leapp preupgrade --oci
+          leapp preupgrade {{ leapp_switch }}
        register: leapp_result
        failed_when: leapp_result.rc != 0
        changed_when: false
