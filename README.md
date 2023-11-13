@@ -8,6 +8,14 @@ With the help of the following playbooks let's understand how the process of Lea
 * Leapp_upgrade.yml: Performs the upgrade and reboots the machine.
 * post_upgrade.yml: Checks the system and removes any residual Oracle Linux 7 packages.
 
+## Variables
+
+| Variable | Required | Description |
+| -------- | -------- | ----------- |
+| proxy | Yes | Values: True or False. Specifies if a proxy needs to be used.
+| my_https_proxy | Optional | If proxy is set to true, this variable takes the input of proxy.
+| leapp_switch | Yes | Values : --oraclelinux or --oci
+
 
 
   
