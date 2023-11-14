@@ -18,23 +18,9 @@
       ansible.builtin.debug:
         var: system_info.stdout_lines
 
-    - name: Check if CentOS 7
-      set_fact:
-        is_centos7: "{{ 'CentOS Linux ' in system_info.stdout }}"
-
     - name: Check if Oracle Linux
       set_fact:
         is_oraclelinux: "{{ 'Oracle Linux' in system_info.stdout }}"   
-
-  #  - name: Installing ELevate
-  #   command: "sudo yum install -y http://repo.almalinux.org/elevate/elevate-release-latest-el7.noarch.rpm"
-   
-    - name: Installing Leapp Packages for Centos 
-      yum:
-        name: leapp
-        state: present
-        name: leapp-data-oraclelinux
-      when: is_centos7
 
     - name: Gather package facts
       ansible.builtin.package_facts:
