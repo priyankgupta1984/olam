@@ -5,7 +5,7 @@ With the help of the following playbooks let's understand how the process of Lea
 
 * leapp_prepare.yml: Enables leapp repositories, install the leapp related pacakges, performs a yum update and prepares the system for the leapp updgrade.
 * leapp_preupgrade.yml: Run the leapp Preupgrade phase, displays the inhibitors and the answer file.
-* Leapp_upgrade.yml: Performs the upgrade and reboots the machine.
+* leapp_upgrade.yml: Performs the upgrade and reboots the machine.
 * post_upgrade.yml: Checks the system and removes any residual Oracle Linux 7 packages.
 
 ## Variables
