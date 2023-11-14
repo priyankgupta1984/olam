@@ -1,9 +1,0 @@
-
----
-
-- hosts: all
-  tasks:
-      - name: Taking backup of OLVM Manager
-        command: "/usr/bin/engine-backup --scope=all --mode=backup"
-        
-        
