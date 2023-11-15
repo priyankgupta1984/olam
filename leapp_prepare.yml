@@ -48,15 +48,15 @@
       debug:
         msg: "Recently updated packages:\n{{ recent_updates.stdout }}"
 
-   - name: Add proxy config to yum.conf
-     blockinfile:
+    - name: Add proxy config to yum.conf
+      blockinfile:
         path: /etc/yum.conf
         marker: "# {mark} Ansible managed block - Do not edit this section"
         block: |
           {% if proxy | bool %}
           proxy={{ my_https_proxy }}
           {% endif %}
-     create: yes
+      create: yes
           
     - name: Install mokutil
       become: yes
