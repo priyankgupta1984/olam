@@ -1,4 +1,0 @@
-plugin: ovirt.ovirt.ovirt
-ovirt_url: "https://ovirt.it.oracle.com/ovirt-engine/api/"
-ovirt_username: monicas@internal
-ovirt_password: Welcome2
