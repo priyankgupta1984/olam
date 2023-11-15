@@ -54,7 +54,7 @@
         line: "proxy={{ my_https_proxy }}"
         state: present
       when:
-       - proxy == true      
+       - proxy == "true"
           
     - name: Install mokutil
       become: yes
