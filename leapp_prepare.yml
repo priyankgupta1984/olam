@@ -56,7 +56,7 @@
           {% if proxy | bool %}
           proxy={{ my_https_proxy }}
           {% endif %}
-      create: yes
+     
           
     - name: Install mokutil
       become: yes
