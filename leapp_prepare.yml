@@ -50,7 +50,7 @@
 
     - name: Add proxy config to dnf.conf
       lineinfile:
-        path: /etc/dnf/dnf.conf
+        path: /etc/yum.conf
         line: "proxy={{ my_https_proxy }}"
         state: present
       when:
