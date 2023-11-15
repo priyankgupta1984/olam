@@ -52,6 +52,7 @@
       lineinfile:
         path: /etc/yum.conf
         line: "proxy={{ my_https_proxy }}"
+        create: yes
       when: proxy 
           
     - name: Install mokutil
