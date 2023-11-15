@@ -53,8 +53,7 @@
         path: /etc/yum.conf
         line: "proxy={{ my_https_proxy }}"
         state: present
-      when:
-       - proxy == "true"
+      when: proxy
           
     - name: Install mokutil
       become: yes
