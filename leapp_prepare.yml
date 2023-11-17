@@ -48,7 +48,7 @@
       debug:
         msg: "Recently updated packages:\n{{ recent_updates.stdout }}"
 
-    - name: Add proxy config to dnf.conf
+    - name: Add proxy config to yum.conf
       lineinfile:
         path: /etc/yum.conf
         line: "proxy={{ my_https_proxy }}"
@@ -106,23 +106,8 @@
     - name: Performing update
       command: yum update -y
 
-   # - name: Check if Leapp repository is enabled
-    #  ansible.builtin.shell: grep -A5 leapp /etc/yum.repos.d/* | grep "enabled=0"
-     # register: leapp_repo_enabled
-      #ignore_errors: yes  # Ignore errors if the repository file doesn't exist
-
-
-   # - name: Enable Leapp repository if not already enabled
-    #   ansible.builtin.yum_repository:
-     #   name: ol7_leapp
-      #  state: present
-       # baseurl: http://yum.oracle.com/repo/OracleLinux/OL7/leapp/x86_64
-        #description: Leapp Upgrade Repo
-      #when: leapp_repo_enabled.rc != 0
-
     - name: Install Leapp
       command: yum install -y leapp --enablerepo=ol7_leapp,ol7_latest
-
 
     - name: Install Leapp
       become: yes
@@ -138,7 +123,6 @@
             regexp: '^PermitRootLogin'
             line: PermitRootLogin yes
           register: permit_root_login
-
 
     - name: Install Cockpit packages
       yum:
