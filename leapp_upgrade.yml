@@ -11,7 +11,7 @@
 
 
 ---
-- name: Leapp Preupgrade stage
+- name: Leapp Upgrade stage
   hosts: all
   become: yes
   vars:    
