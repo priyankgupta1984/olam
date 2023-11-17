@@ -16,6 +16,23 @@ With the help of the following playbooks let's understand how the process of Lea
 | my_https_proxy | Optional | If proxy is set to true, this variable takes the input of proxy.
 | leapp_switch | Yes | Values : --oraclelinux or --oci
 
+## Steps
+
+### Oracle Linux Automation Manager
+  
+  * Ensure the credentials, Inventories and Projects are created.
+  * Create a template for each of the four playbooks mentioned above. To simplify the process further, Create a Workflow template in the order leapp_prepare --> leapp_preupgrade --> leapp_upgrade --> leapp_posyupgrade.
+  * Add the extra variables as required to each template. Example : {"leapp_swicth":"--oraclelinux"}
+
+### Ansible
+
+* Ensure Inventory file is created/updated pointing to the target hosts.
+* Execute each of the playbooks with commands similar to below:
+```
+ansible-playbook leapp_prepare.yml -e '{"proxy":"yes","my_https_proxy":"http://proxy:proxyport"}'
+ansible-playbook leapp_preupgrade.yml -e '{"leapp_switch":"--oraclelinux","my_https_proxy":"http://proxy:proxyport"}'
+ansible-playbook leapp_upgrade.yml -e '{"leapp_switch":"--oraclelinux"}'
+
 
 
   
