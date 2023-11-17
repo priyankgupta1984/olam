@@ -16,6 +16,7 @@
   become: yes
   vars:    
      leapp_switch: ""
+     my_https_proxy: ""
      
 
   tasks:
@@ -73,6 +74,24 @@
      - name: Print answerfile content
        ansible.builtin.debug:
          var: answerfile_content.stdout_lines
+
+     - name: Check if proxy is present in /etc/yum.conf
+       command: grep -q '^proxy=' /etc/yum.conf
+       ignore_errors: yes
+       register: proxy_check
+
+     - name: Comment out proxy in /etc/yum.conf
+       replace:
+         path: /etc/yum.conf
+         regexp: '^(proxy=.*)$'
+         replace: '#\1'
+       when: proxy_check.rc == 0
+
+
+     - name: Modify leapp-upgrade-repos-ol8.repo
+       command: sudo sed -i '/^enabled=0.*/a proxy={{ my_https_proxy }}' /etc/yum.repos.d/leapp-upgrade-repos-ol8.repo
+       when: proxy_check.rc == 0
+
 
      
 
