@@ -29,9 +29,9 @@ With the help of the following playbooks let's understand how the process of Lea
 * Ensure Inventory file is created/updated pointing to the target hosts.
 * Execute each of the playbooks with commands similar to below:
 ```
-ansible-playbook leapp_prepare.yml -e '{"proxy":"yes","my_https_proxy":"http://proxy:proxyport"}'
-ansible-playbook leapp_preupgrade.yml -e '{"leapp_switch":"--oraclelinux","my_https_proxy":"http://proxy:proxyport"}'
-ansible-playbook leapp_upgrade.yml -e '{"leapp_switch":"--oraclelinux"}'
+#ansible-playbook leapp_prepare.yml -e '{"proxy":"yes","my_https_proxy":"http://proxy:proxyport"}'
+#ansible-playbook leapp_preupgrade.yml -e '{"leapp_switch":"--oraclelinux","my_https_proxy":"http://proxy:proxyport"}'
+#ansible-playbook leapp_upgrade.yml -e '{"leapp_switch":"--oraclelinux"}'
 ```
 
 
