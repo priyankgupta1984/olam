@@ -7,3 +7,6 @@ collections:
     type: git
     version: main
   - name: ovirt.ovirt
+  - name: https://github.com/oracle/oci-ansible-collection.git
+    type: git
+    version: master
