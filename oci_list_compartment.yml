@@ -1,0 +1,13 @@
+- name: List Compartment Details
+  collections:
+    - oracle.oci
+  connection: local
+  hosts: localhost
+  tasks:
+    - name: Get a specific compartment
+      oci_identity_compartment_facts:
+        compartment_id: "{{ instance_compartment }}"
+      register: output
+    - name: Print compartment details
+      debug:
+        msg: "{{ output }}"
