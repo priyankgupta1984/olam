@@ -1,6 +1,4 @@
 - name: List Compartment Details
-  collections:
-    - oracle.oci
   connection: local
   hosts: localhost
   tasks:
