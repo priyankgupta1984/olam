@@ -173,38 +173,4 @@
           debug:
             msg: "Public IP of launched instance {{ instance_public_ip }}, connect as user opc with the uploaded public key"
             
-        - name: Fail task when variable rescue_test is set to true (for testing the rescue section)
-          fail:
-            msg: "Rescue debug is enabled, we will fail to test the rescue steps"
-          when: "( rescue_test )"
-            
-      rescue:
-        - name: Terminate the instance
-          oci_compute_instance:
-            id: "{{ instance_id }}"
-            state: absent
-
-        - name: Delete the subnet
-          oci_network_subnet:
-            id: "{{ instance_subnet_id }}"
-            state: absent
-
-        - name: Delete the security list
-          oci_network_security_list:
-            id: "{{ instance_security_list_ocid }}"
-            state: absent
-
-        - name: Delete the route table
-          oci_network_route_table:
-            id: "{{ rt_id }}"
-            state: absent
-
-        - name: Delete the Internet Gateway
-          oci_network_internet_gateway:
-            id: "{{ ig_id }}"
-            state: absent
-
-        - name: Delete the VCN
-          oci_network_vcn:
-            vcn_id: "{{ vcn_id }}"
-            state: absent
+     
