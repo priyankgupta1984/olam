@@ -11,6 +11,7 @@
       - name: List available instances
         oracle.oci.oci_os_management_hub_managed_instance_facts:
           managed_instance_id: "{{ instance_id }}"
+          state: absent
 
       - name: List Updates
         oracle.oci.oci_os_management_hub_available_package_facts:
