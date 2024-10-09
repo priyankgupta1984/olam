@@ -9,7 +9,7 @@
           profile_id: "{{ profile_id }}"
 
       - name: List available instances
-        oracle.oci.oci_os_management_hub_managed_instance_facts:
+        oracle.oci.oci_os_management_hub_managed_instance:
           managed_instance_id: "{{ instance_id }}"
           state: absent
 
