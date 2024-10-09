@@ -11,11 +11,12 @@
       - name: List available instances
         oracle.oci.oci_os_management_hub_managed_instance:
           managed_instance_id: "{{ instance_id }}"
-          state: absent
+          state: present
 
       - name: List Updates
         oracle.oci.oci_os_management_hub_available_package_facts:
            managed_instance_id: "{{ instance_id }}"
+           
 
 
 
