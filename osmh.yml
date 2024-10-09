@@ -4,11 +4,12 @@
       - oracle.oci
   tasks:
 
-      - name: sleep
-        pause:
-           seconds: 200
-
       - name: List available_updates
         oracle.oci.oci_os_management_hub_profile_facts:
           profile_id: "{{ profile_id }}"
+
+      - name: List available_updates
+        oracle.oci.oci_os_management_hub_installed_package_facts:
+          lifecycle_stage_id: "{{ lifecycle_id }}"
+
 
