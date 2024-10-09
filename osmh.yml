@@ -9,5 +9,6 @@
            seconds: 200
 
       - name: List available_updates
-        oracle.oci.oci_os_management_available_update_facts:
-          managed_instance_id: "{{ instance_id }}"
+        oracle.oci.oci_os_management_hub_profile_facts:
+          profile_id: "{{ profile_id }}"
+
