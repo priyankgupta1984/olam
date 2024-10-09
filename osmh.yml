@@ -4,12 +4,17 @@
       - oracle.oci
   tasks:
 
-      - name: List available_updates
+      - name: List available profile
         oracle.oci.oci_os_management_hub_profile_facts:
           profile_id: "{{ profile_id }}"
 
-      - name: List available_updates
+      - name: List available instances
         oracle.oci.oci_os_management_hub_managed_instance_facts:
           managed_instance_id: "{{ instance_id }}"
+
+      - name: List Updates
+        oracle.oci.oci_os_management_hub_available_package_facts:
+           managed_instance_id: "{{ instance_id }}"
+
 
 
