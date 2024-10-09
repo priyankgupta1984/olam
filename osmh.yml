@@ -9,7 +9,7 @@
           profile_id: "{{ profile_id }}"
 
       - name: List available_updates
-        oracle.oci.oci_os_management_hub_installed_package_facts:
-          lifecycle_stage_id: "{{ lifecycle_id }}"
+        oracle.oci.oci_os_management_hub_managed_instance_facts:
+          managed_instance_id: "{{ instance_id }}"
 
 
