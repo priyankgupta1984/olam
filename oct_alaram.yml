@@ -1,0 +1,16 @@
+- hosts: all
+  become: yes
+  collections:
+      - oracle.oci
+  tasks:
+     - name: Create alarm
+       oci_monitoring_alarm:  
+           display_name: display_name_example
+           compartment_id: "{{ compartment_id }}"
+           metric_compartment_id: "{{ compartment_id }}"
+           namespace: namespace_example
+           query: query_example
+           severity: severity_example
+           destinations: [ "destinations_example" ]
+           is_enabled: true
+
