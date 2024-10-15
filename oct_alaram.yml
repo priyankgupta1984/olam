@@ -13,4 +13,19 @@
            severity: severity_example
            destinations: [ "destinations_example" ]
            is_enabled: true
+           metric_compartment_id_in_subtree: true
+           resource_group: resource_group_example
+           resolution: resolution_example
+           pending_duration: pending_duration_example
+           body: body_example
+           is_notifications_per_metric_dimension_enabled: true
+           message_format: RAW
+           repeat_notification_duration: repeat_notification_duration_example
+           suppression:
+             time_suppress_from: time_suppress_from_example
+             time_suppress_until: time_suppress_until_example
+             description: description_example
+           freeform_tags: {'Department': 'Finance'}
+           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          
 
