@@ -1,0 +1,29 @@
+---
+- name: List VMs in OLVM using environment variables
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Ensure required environment variables are set
+      ansible.builtin.fail:
+        msg: "Environment variable '{{ item }}' is not set."
+      with_items:
+        - OVIRT_URL
+        - OVIRT_USERNAME
+        - OVIRT_PASSWORD
+      when: ansible_env[item] is not defined
+
+    - name: List VMs from OLVM
+      ovirt.ovirt.ovirt_vm_info:
+        auth:
+          url: "{{ lookup('env', 'OVIRT_URL') }}"
+          username: "{{ lookup('env', 'OVIRT_USERNAME') }}"
+          password: "{{ lookup('env', 'OVIRT_PASSWORD') }}"
+          insecure: "{{ lookup('env', 'OVIRT_INSECURE') | default('false') | bool }}"
+          ca_file: "{{ lookup('env', 'OVIRT_CA_FILE') | default(None) }}"
+      register: vm_info
+
+    - name: Display VM names
+      debug:
+        msg: "{{ item.name }}"
+      loop: "{{ vm_info.ovirt_vms }}"
+
