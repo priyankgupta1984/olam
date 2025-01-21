@@ -3,14 +3,6 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Ensure required environment variables are set
-      ansible.builtin.fail:
-        msg: "Environment variable '{{ item }}' is not set."
-      with_items:
-        - OVIRT_URL
-        - OVIRT_USERNAME
-        - OVIRT_PASSWORD
-      when: ansible_env[item] is not defined
 
     - name: List VMs from OLVM
       ovirt.ovirt.ovirt_vm_info:
