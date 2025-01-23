@@ -1,6 +1,6 @@
 ---
 - name: List VMs in OLVM using environment variables
-  hosts: localhost
+  hosts: all
   gather_facts: false
   tasks:
 
