@@ -46,7 +46,7 @@
           {{ networks_info.ovirt_networks | map(attribute='name') | join(', ') }}
 
     - name: Get list of templates
-      ovirt.ovirt.ovirt_templates_info:
+      ovirt.ovirt.ovirt_template_info:
         auth: "{{ ovirt_auth }}"
       register: templates_info
 
