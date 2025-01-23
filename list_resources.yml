@@ -4,16 +4,32 @@
   gather_facts: false
   tasks:
 
-    - name: List OLVM VM's {{ vm_name }} by Cluster {{ olvm_cluster }}
+    - name: Login to OLVM manager
+      ovirt_auth:
+        url: "{{ lookup('env', 'OVIRT_URL') }}"
+        username: "{{ lookup('env', 'OVIRT_USERNAME') }}"
+        password: "{{ lookup('env', 'OVIRT_PASSWORD') }}"
+        ca_file: "{{ olvm_cafile | default(omit) }}"
+        insecure: "{{ olvm_insecure | default(true) }}"
+      tags:
+        - always
+
+    - name: List OLVM VM's
       ovirt_vm_info:
-        auth:
-          url: "{{ lookup('env', 'OVIRT_URL') }}"
-          username: "{{ lookup('env', 'OVIRT_USERNAME') }}"
-          password: "{{ lookup('env', 'OVIRT_PASSWORD') }}"
-          ca_file: "{{ olvm_cafile | default(omit) }}"
-          insecure: "{{ olvm_insecure | default(true) }}"
+          auth: "{{ ovirt_auth }}"
       register: result
 
     - name: Print out {{ vm_name }} VM information
       debug:
         msg: "{{ result.ovirt_vms }}"
+
+    - name: Get list of storage domains
+      ovirt_storage_domains_info:
+        auth: "{{ ovirt_auth }}"
+      register: storage_domains_info
+
+    - name: Print storage domain names
+      debug:
+        msg: >-
+          Storage Domains:
+          {{ storage_domains_info.ovirt_storage_domains | map(attribute='name') | join(', ') }}
