@@ -24,7 +24,7 @@
         msg: "{{ result.ovirt_vms }}"
 
     - name: Get list of storage domains
-      ovirt_storage_domains_info:
+      ovirt_storage_domain_info:
         auth: "{{ ovirt_auth }}"
       register: storage_domains_info
 
