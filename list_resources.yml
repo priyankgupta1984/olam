@@ -33,3 +33,14 @@
         msg: >-
           Storage Domains:
           {{ storage_domains_info.ovirt_storage_domains | map(attribute='name') | join(', ') }}
+
+    - name: Get list of networks
+      ovirt.ovirt.ovirt_network_info:
+        auth: "{{ ovirt_auth }}"
+      register: networks_info
+
+    - name: Print network names
+      debug:
+        msg: >-
+          Networks:
+          {{ networks_info.ovirt_networks | map(attribute='name') | join(', ') }}
