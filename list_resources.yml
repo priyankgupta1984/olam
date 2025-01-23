@@ -44,3 +44,14 @@
         msg: >-
           Networks:
           {{ networks_info.ovirt_networks | map(attribute='name') | join(', ') }}
+
+    - name: Get list of templates
+      ovirt.ovirt.ovirt_templates_info:
+        auth: "{{ ovirt_auth }}"
+      register: templates_info
+
+    - name: Print template names
+      debug:
+        msg: >-
+          Templates:
+          {{ templates_info.ovirt_templates | map(attribute='name') | join(', ') }}
