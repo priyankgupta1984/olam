@@ -11,6 +11,7 @@
         ca_file: /etc/pki/ovirt-engine/ca.pem
         password: "{{ olvm_password }}"
     - ovirt.ovirt.ovirt_network_info:
+        auth: "{{ ovirt_auth }}"
         pattern: name=vlan1*
         register: result
     - ansible.builtin.debug:
