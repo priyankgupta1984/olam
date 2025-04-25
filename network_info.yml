@@ -12,8 +12,8 @@
         password: "{{ olvm_password }}"
     - ovirt.ovirt.ovirt_network_info:
         auth: "{{ ovirt_auth }}"
-        pattern: name=vlan1*
-        register: result
+        pattern: name=ovirt*
+      register: result
     - ansible.builtin.debug:
         msg: "{{ result.ovirt_networks }}"
     - name: Cleanup OLVM auth token
