@@ -1,0 +1,22 @@
+---
+- name: Main Playbook
+  hosts: odscshe-pr.in.oracle.com
+  vars_files:
+    - password.yaml
+  tasks:
+    - name: Obtain SSO token with using username/password credentials
+      ovirt_auth:
+        url: https://odscshe-pr.in.oracle.com/ovirt-engine/api
+        username: admin@internal
+        ca_file: /etc/pki/ovirt-engine/ca.pem
+        password: "{{ olvm_password }}"
+    - ovirt.ovirt.ovirt_network_info:
+        pattern: name=vlan1*
+        register: result
+    - ansible.builtin.debug:
+        msg: "{{ result.ovirt_networks }}"
+    - name: Cleanup OLVM auth token
+      ovirt_auth:
+        ovirt_auth: "{{ ovirt_auth }}"
+        state: absent
+ 
