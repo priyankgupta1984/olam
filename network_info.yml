@@ -6,7 +6,7 @@
 
   tasks:
     - name: Ensure lldpd is installed
-      package:
+      dnf:
         name: lldpd
         state: present
 
