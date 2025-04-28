@@ -12,16 +12,17 @@
         password: "{{ olvm_password }}"
     - ovirt.ovirt.ovirt_host_info:
         auth: "{{ ovirt_auth }}"
-        fetch_nested: true
-        nested_attributes:
+        follow:
+          - network_attachments.host_nic
           - reported_devices
+          - networks
       register: host_info
 
-    - name: Display full reported_devices info
-      ansible.builtin.debug:
-        var: item.reported_devices
+    - name: Display full host info
+      debug:
+        var: item
       loop: "{{ host_info.ovirt_hosts }}"
-     
+        
     - name: Cleanup OLVM auth token
       ovirt_auth:
         ovirt_auth: "{{ ovirt_auth }}"
