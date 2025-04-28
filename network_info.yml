@@ -22,6 +22,6 @@
     - name: Show LLDP info
       debug:
         msg: "{{ item.networks | map(attribute='lldp') | list }}"
-      loop: "{{ host_info.ovirt_hosts }}"
+
 
  
