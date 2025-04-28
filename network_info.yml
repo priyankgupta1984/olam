@@ -12,10 +12,6 @@
         password: "{{ olvm_password }}"
     - ovirt.ovirt.ovirt_host_info:
         auth: "{{ ovirt_auth }}"
-        follow:
-          - network_attachments.host_nic
-          - reported_devices
-          - networks
       register: host_info
 
     - name: Display full host info
