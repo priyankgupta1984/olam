@@ -1,18 +1,26 @@
 ---
-- name: Main Playbook
+- name: Gather LLDP Neighbor Info from KVM hosts
   hosts: localhost
+  become: true
+  gather_facts: no
 
   tasks:
-    - name: Gather information from LLDP
-      community.general.lldp:
+    - name: Ensure lldpd is installed
+      package:
+        name: lldpd
+        state: present
 
-    - name: Print each switch/port
-      ansible.builtin.debug:
-        msg: "{{ lldp[item]['chassis']['name'] }} / {{ lldp[item]['port']['ifname'] }}"
-      with_items: "{{ lldp.keys() }}"
+    - name: Ensure lldpd service is running
+      service:
+        name: lldpd
+        state: started
+        enabled: true
 
+    - name: Get LLDP neighbors in JSON format
+      command: lldpcli show neighbors -f json
+      register: lldp_neighbors
+      changed_when: false
 
-  
-
-
- 
+    - name: Show LLDP neighbor raw info
+      debug:
+        var: lldp_neighbors.stdout
