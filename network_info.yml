@@ -1,6 +1,6 @@
 ---
 - name: Gather LLDP Neighbor Info from KVM hosts
-  hosts: localhost
+  hosts: 10.178.73.11
   become: true
   gather_facts: no
 
