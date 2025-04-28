@@ -10,14 +10,18 @@
         username: admin@internal
         ca_file: /etc/pki/ovirt-engine/ca.pem
         password: "{{ olvm_password }}"
-    - ovirt.ovirt.ovirt_network_info:
+    - ovirt.ovirt.ovirt_host_info:
         auth: "{{ ovirt_auth }}"
-        pattern: name=ovirt*
-      register: result
-    - ansible.builtin.debug:
-        msg: "{{ result.ovirt_networks }}"
+     
     - name: Cleanup OLVM auth token
       ovirt_auth:
         ovirt_auth: "{{ ovirt_auth }}"
         state: absent
+      register: host_info
+
+    - name: Show LLDP info
+      debug:
+        msg: "{{ item.networks | map(attribute='lldp') | list }}"
+      loop: "{{ host_info.ovirt_hosts }}"
+
  
