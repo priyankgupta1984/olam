@@ -19,9 +19,7 @@
         state: absent
       register: host_info
 
-    - name: Show LLDP info
-      debug:
-        msg: "{{ item.networks | map(attribute='lldp') | list }}"
+  
 
 
  
