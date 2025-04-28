@@ -1,29 +1,16 @@
 ---
 - name: Main Playbook
-  hosts: odscshe-pr.in.oracle.com
-  vars_files:
-    - password.yaml
-  tasks:
-    - name: Obtain SSO token with using username/password credentials
-      ovirt_auth:
-        url: https://odscshe-pr.in.oracle.com/ovirt-engine/api
-        username: admin@internal
-        ca_file: /etc/pki/ovirt-engine/ca.pem
-        password: "{{ olvm_password }}"
-    - ovirt.ovirt.ovirt_host_info:
-        auth: "{{ ovirt_auth }}"
-      register: host_info
+  hosts: localhost
 
-    - name: Display full host info
-      debug:
-        var: item
-      loop: "{{ host_info.ovirt_hosts }}"
-        
-    - name: Cleanup OLVM auth token
-      ovirt_auth:
-        ovirt_auth: "{{ ovirt_auth }}"
-        state: absent
-      register: host_info
+  tasks:
+    - name: Gather information from LLDP
+      community.general.lldp:
+
+    - name: Print each switch/port
+      ansible.builtin.debug:
+        msg: "{{ lldp[item]['chassis']['name'] }} / {{ lldp[item]['port']['ifname'] }}"
+      with_items: "{{ lldp.keys() }}"
+
 
   
 
