@@ -17,19 +17,10 @@
           - reported_devices
       register: host_info
 
-    - name: Show link layer info (MAC, Speed, Driver)
-      debug:
-        msg: |
-          Host: {{ item.name }}
-          {% for dev in item.reported_devices %}
-            Interface: {{ dev.name }}
-            MAC: {{ dev.mac.address }}
-            Speed: {{ dev.speed | default('N/A') }}
-            Driver: {{ dev.driver | default('N/A') }}
-            Description: {{ dev.description | default('N/A') }}
-          {% endfor %}
+    - name: Display full reported_devices info
+      ansible.builtin.debug:
+        var: item.reported_devices
       loop: "{{ host_info.ovirt_hosts }}"
-
      
     - name: Cleanup OLVM auth token
       ovirt_auth:
