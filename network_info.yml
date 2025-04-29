@@ -10,11 +10,7 @@
         name: lldpd
         state: present
 
-    - name: Ensure lldpd service is running
-      service:
-        name: lldpd
-        state: started
-        enabled: true
+
 
     - name: Get LLDP neighbors in JSON format
       command: lldpcli show neighbors -f json
